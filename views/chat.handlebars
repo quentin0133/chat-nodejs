@@ -1,0 +1,40 @@
+<div class="modal fade" id="modal-pseudo" tabindex="-1" role="dialog" aria-labelledby="choixPseudo">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <form id="form-pseudo" action="">
+        <div class="modal-header">
+          <h5 class="modal-title">Entrer un pseudo pour la session</h5>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="input-pseudo" class="form-control" autocomplete="off" placeholder="(Par défaut : Anonyme)" />
+        </div>
+        <div class="modal-footer">
+          <button class="form-control btn btn-primary">Envoyer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="messages" class="container-fluid message-chat">
+  <div class="d-flex justify-content-end">
+    <div id="liste-utilisateur" class="card bg-success text-white text-justify position-fixed">
+      <div class="card-header">
+        <h5>Utilisateur dans le chat</h5>
+      </div>
+      <div class="card-body">
+      </div>
+    </div>
+  </div>
+</div>
+
+<form id="form-chat" action="">
+  <div class="form-row fixed-bottom bg-white">
+    <div class="col-10">
+      <input type="text" id="input-chat" class="form-control" autocomplete="off" placeholder="Exprimez-vous !" />
+    </div>
+    <div class="col-2">
+      <button class="form-control btn btn-primary">Envoyer</button>
+    </div>
+  </div>
+</form>
