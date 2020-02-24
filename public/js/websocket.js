@@ -18,12 +18,10 @@ $(function () {
 
     // On cache le modal
     $("#modal-pseudo").modal('hide');
-    let username = {
-      $("#input-pseudo").val();
-    }
+    let username = $("#input-pseudo").val();
     // Vérification de l'input, on a un pseudo par défaut
     if(username == null || username.trim() == '') {
-      user.username = "Anonyme";
+      username = "Anonyme";
     }
     socket.emit("username", username);
 
@@ -67,8 +65,8 @@ $(function () {
     // Réception de la liste des utilisateurs
     socket.on('list-user', function(listeUtilisateur) {
       $('#liste-utilisateur .card-text').remove();
-      listeUtilisateur.forEach((utilisateur, i) => {
-        $('#liste-utilisateur .card-body').append('<p class="card-text border-bottom">' + utilisateur + '</p>');
+      listeUtilisateur.forEach((user, i) => {
+        $('#liste-utilisateur .card-body').append('<p class="card-text border-bottom">' + user.username + '</p>');
       });
     });
 
