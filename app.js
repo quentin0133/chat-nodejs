@@ -9,7 +9,7 @@ let express         = require('express'),
 appAdmin = express();
 
 appAdmin.use(bodyParser.urlencoded({extended: true}));
-appAdmin.set('port', 8600);
+appAdmin.set('port', process.env.PORT || 8600);
 appAdmin.set('views', path.join(__dirname, 'views'));
 
 // routes static, le routeur n'y aura pas accès
