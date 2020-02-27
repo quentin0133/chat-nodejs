@@ -17,7 +17,6 @@
     "mysql": "2.18.1",
     "package.json": "^2.0.1",
     "socket.io": "^2.3.0",
-    "string": "*",
     "unidecode": "*"
   },
   "devDependencies": {

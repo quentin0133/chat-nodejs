@@ -1,4 +1,4 @@
-let express = require('express'),
+let express         = require('express'),
     session         = require('express-session'),
     cookieParser    = require('cookie-parser'),
     bodyParser      = require('body-parser'), //pour récupérer les résultats des post
@@ -60,7 +60,6 @@ socket.on('connection', function(client) {
     else {
       listUser.splice(client.id, 0, user);
     }
-    console.log(listUser);
     socket.emit("list-user", listUser);
     socket.emit("message-connexion", "'" + client.username + "' vient de se connecter !");
   });
@@ -70,9 +69,7 @@ socket.on('connection', function(client) {
   });
 
   client.on('disconnect', function() {
-    console.log(getIndexOf(listUser, client.id));
     listUser.splice(getIndexOf(listUser, client.id), 1);
-    console.log(listUser);
     socket.emit("list-user", listUser);
     socket.emit("message-deconnexion", "'" + client.username + "' vient de se déconnecter !");
   });
