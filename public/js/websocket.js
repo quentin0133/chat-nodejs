@@ -1,5 +1,5 @@
 $(function () {
-  let socket = io();
+  let socket = io(window.location.pathname);
   // Sert à la couleur d'arrière plan des messages
   let messagePaire = true;
 

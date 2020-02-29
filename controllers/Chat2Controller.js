@@ -3,8 +3,8 @@ var listUser = [];
 
 // ////////////////////////////////////////////// C O N N E X I O N
 module.exports.Chat = function(req, res){
-  res.title = "Chat";
-  res.render('chat', res);
+  res.title = "Chat 2";
+  res.render('chat2', res);
 };
 
 module.exports.respond = function(socket, client){
