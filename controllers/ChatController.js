@@ -1,13 +1,13 @@
-//let model = require("../models/chat_model.js");
 var listUser = [];
 
-// ////////////////////////////////////////////// C O N N E X I O N
+// ////////////////////////////////////////////// C H A T
 module.exports.Chat = function(req, res){
   res.title = "Chat";
   res.render('chat', res);
-};
+}
 
 module.exports.respond = function(socket, client){
+  // Connexion au chat (après avoir rempli le formulaire)
   client.on('username', function(username) {
     client.connect = true;
     client.id = searchPlaceForUserId(listUser);
@@ -22,7 +22,7 @@ module.exports.respond = function(socket, client){
     else {
       listUser.splice(client.id, 0, user);
     }
-    socket.emit("list-user", listUser);
+    socket.emit("maj-list-user", listUser);
     socket.emit("message-connexion", "'" + client.username + "' vient de se connecter !");
   });
 
@@ -33,7 +33,7 @@ module.exports.respond = function(socket, client){
   client.on('disconnect', function() {
     if(client.connect) {
       listUser.splice(getIndexOf(listUser, client.id), 1);
-      socket.emit("list-user", listUser);
+      socket.emit("maj-list-user", listUser);
       socket.emit("message-deconnexion", "'" + client.username + "' vient de se déconnecter !");
     }
   });

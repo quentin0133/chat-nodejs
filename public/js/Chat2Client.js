@@ -1,9 +1,13 @@
 $(function () {
-  let socket = io(window.location.pathname);
+  let socket = io("/chat2");
   // Sert à la couleur d'arrière plan des messages
   let messagePaire = true;
+  var listCompte = [];
 
+  // Permet de prendre en compte la hauteur de l'input en footer (qui n'est pas pris
+  // automatiquement par bootstrap)
   $("body").css("margin-bottom", $("#form-chat .form-row").outerHeight());
+  // Idem qu'en puisque bootstrap n'inclu pas les position-fixed dans le body
   $("#liste-utilisateur").height($(window).height() - $("#form-chat .form-row").outerHeight());
 
   // Option du formulaire de connexion (modal)
@@ -62,14 +66,19 @@ $(function () {
       $('html, body').scrollTop($(document).height());
     });
 
-    // Réception de la liste des utilisateurs
-    socket.on('list-user', function(listeUtilisateur) {
+    // Mise à jour de la liste d'utilisateur
+    socket.on('maj-list-user', function(listeUtilisateur) {
       $('#liste-utilisateur .card-text').remove();
       listeUtilisateur.forEach((user, i) => {
         $('#liste-utilisateur .card-body').append('<p class="card-text border-bottom">' + user.username + '</p>');
       });
     });
 
+  });
+
+  // Mise à jour de la liste d'utilisateur
+  socket.on('maj-creation-compte', function(listeCompte) {
+    listCompte = listeCompte;
   });
 
   function swapBoolean(boolean) {

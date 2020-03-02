@@ -1,7 +1,8 @@
-let AccueilController = require('./../controllers/AccueilController');
-let ChatController = require('./../controllers/ChatController');
-let Chat2Controller = require('./../controllers/Chat2Controller');
-let NoPageFound = require('./../controllers/NoPageFound');
+let AccueilController          = require('./../controllers/AccueilController');
+let ChatController             = require('./../controllers/ChatController');
+let Chat2Controller            = require('./../controllers/Chat2Controller');
+let AjoutCompteController      = require('./../controllers/AjoutCompteController');
+let NoPageFound                = require('./../controllers/NoPageFound');
 
 // Routes
 module.exports = function(app, io) {
@@ -11,8 +12,11 @@ module.exports = function(app, io) {
   app.get('/chat', ChatController.Chat);
   app.post('/chat', ChatController.Chat);
 
-  app.get('/chat2', Chat2Controller.Chat);
-  app.post('/chat2', Chat2Controller.Chat);
+  app.get('/chat2', Chat2Controller.Chat2);
+  app.post('/chat2', Chat2Controller.Chat2);
+
+  app.get('/ajout-compte', AjoutCompteController.AjoutCompte);
+  app.post('/ajout-compte', AjoutCompteController.AjoutCompte);
 
   app.get('*', NoPageFound.NoPageFound);
   app.post('*', NoPageFound.NoPageFound);
@@ -23,9 +27,15 @@ module.exports = function(app, io) {
     ChatController.respond(chat, client);
   });
 
-  var chatLogin = io
+  var chat2 = io
   .of('/chat2')
   .on('connection', function(client) {
-    Chat2Controller.respond(chatLogin, client);
+    Chat2Controller.respond(chat2, client);
+  });
+
+  var ajoutListe = io
+  .of('/ajout-compte')
+  .on('connection', function(client) {
+    AjoutCompteController.respond(ajoutListe, client);
   });
 };
